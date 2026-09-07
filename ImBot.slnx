@@ -1,0 +1,11 @@
+<Solution>
+  <Project Path="ImBot.Core/ImBot.Core.csproj" />
+  <Project Path="ImBot.Router/ImBot.Router.csproj" />
+  <Project Path="ImBot.ConsoleAdapter/ImBot.ConsoleAdapter.csproj" />
+  <Project Path="ImBot.Cmd.Help/ImBot.Cmd.Help.csproj" />
+  <Project Path="ImBot.Cmd.Echo/ImBot.Cmd.Echo.csproj" />
+  <Project Path="ImBot.Cmd.Admin/ImBot.Cmd.Admin.csproj" />
+  <Project Path="ImBot.UiConsole/ImBot.UiConsole.csproj" />
+  <Project Path="ImBot.Cmd.Greet/ImBot.Cmd.Greet.csproj" />
+  <Project Path="ImBot.Host/ImBot.Host.csproj" />
+</Solution>

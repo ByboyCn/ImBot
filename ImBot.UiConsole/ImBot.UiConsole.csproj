@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <!-- 类库默认不拷贝 NuGet 运行时资产。开启后 TCYM.UI 与 SkiaSharp 进入本 bin，再由 Directory.Build.props 拷到宿主主目录（ui 子进程依赖解析需要） -->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="TCYM.UI" Version="0.1.1.18" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../ImBot.Core/ImBot.Core.csproj" />
+    <ProjectReference Include="../ImBot.ConsoleAdapter/ImBot.ConsoleAdapter.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,20 @@
+# 构建产物
+bin/
+obj/
+*.binlog
+*.user
+.vs/
+
+# 运行产物
+host.log
+ui-crash.log
+shot*.png
+
+# 非 ImBot 的其他项目（独立管理）
+CordisProto/
+wxwork/
+ImBot.UI/
+
+# 系统
+Thumbs.db
+Desktop.ini

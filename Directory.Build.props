@@ -1,0 +1,35 @@
+<Project>
+  <!--
+    ImBot 插件自动部署：ImBot.* 中除 Host 和 Core 外的所有项目视为插件。
+    编译后：自己的 dll 拷入 ImBot.Host\bin\...\plugins\（宿主扫描装配）；
+            其余产物（依赖 dll / runtimes 原生库）拷入宿主主目录。
+    新增插件 = 新建类库项目（引用 ImBot.Core + [Plugin] 特性），编一次即生效，宿主零改动。
+  -->
+  <Target Name="DeployImBotPlugin"
+          Condition="$(MSBuildProjectName.StartsWith('ImBot.')) and '$(MSBuildProjectName)' != 'ImBot.Host' and '$(MSBuildProjectName)' != 'ImBot.Core'"
+          AfterTargets="Build">
+    <PropertyGroup>
+      <_PluginDll>$(TargetFileName)</_PluginDll>
+      <!-- 在目标内取 $(Configuration)：顶层属性求值阶段它可能尚未传入（直接编 csproj 时曾求值为空） -->
+      <HostOutDir>$(MSBuildThisFileDirectory)ImBot.Host\bin\$(Configuration)\net10.0\</HostOutDir>
+    </PropertyGroup>
+    <!-- 1. 自己的 dll -> plugins\ -->
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(HostOutDir)plugins/" SkipUnchangedFiles="false" />
+    <!-- 2. 其余运行时依赖（含 runtimes\ 原生库）-> 宿主主目录，排除本插件与其它 ImBot 插件 dll -->
+    <ItemGroup>
+      <_HostCopy Include="$(OutDir)**\*.*" Exclude="$(OutDir)$(_PluginDll);$(OutDir)$(AssemblyName).pdb;$(OutDir)$(AssemblyName).deps.json" />
+      <_HostCopy Remove="$(OutDir)ImBot.Router.dll;$(OutDir)ImBot.Router.pdb" />
+      <_HostCopy Remove="$(OutDir)ImBot.ConsoleAdapter.dll;$(OutDir)ImBot.ConsoleAdapter.pdb" />
+      <_HostCopy Remove="$(OutDir)ImBot.Cmd.Help.dll;$(OutDir)ImBot.Cmd.Help.pdb" />
+      <_HostCopy Remove="$(OutDir)ImBot.Cmd.Echo.dll;$(OutDir)ImBot.Cmd.Echo.pdb" />
+      <_HostCopy Remove="$(OutDir)ImBot.Cmd.Admin.dll;$(OutDir)ImBot.Cmd.Admin.pdb" />
+    </ItemGroup>
+    <Copy SourceFiles="@(_HostCopy)" DestinationFiles="@(_HostCopy->'$(HostOutDir)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+    <!-- 3. win-x64 原生库（SDL3 / libSkiaSharp）平铺拷入宿主主目录：
+         宿主 deps.json 不认识插件依赖，无法经 runtimes\ 解析，直接放主目录兜底 -->
+    <ItemGroup>
+      <_NativeCopy Include="$(OutDir)runtimes\win-x64\native\*.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(_NativeCopy)" DestinationFolder="$(HostOutDir)" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

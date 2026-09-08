@@ -30,6 +30,7 @@
       <_HostCopy Remove="$(OutDir)ImBot.Plugin.A.dll;$(OutDir)ImBot.Plugin.A.pdb" />
       <_HostCopy Remove="$(OutDir)ImBot.Plugin.B.dll;$(OutDir)ImBot.Plugin.B.pdb" />
       <_HostCopy Remove="$(OutDir)ImBot.UiConsole.dll;$(OutDir)ImBot.UiConsole.pdb" />
+      <_HostCopy Remove="$(OutDir)ImBot.Adapter.OneBot.dll;$(OutDir)ImBot.Adapter.OneBot.pdb" />
     </ItemGroup>
     <Copy SourceFiles="@(_HostCopy)" DestinationFiles="@(_HostCopy->'$(HostOutDir)%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
     <!-- 3. win-x64 原生库（SDL3 / libSkiaSharp）平铺拷入宿主主目录：

@@ -10,5 +10,7 @@
   <Project Path="ImBot.Plugin.A.Api/ImBot.Plugin.A.Api.csproj" />
   <Project Path="ImBot.Plugin.A/ImBot.Plugin.A.csproj" />
   <Project Path="ImBot.Plugin.B/ImBot.Plugin.B.csproj" />
+  <Project Path="ImBot.Adapter.OneBot.Api/ImBot.Adapter.OneBot.Api.csproj" />
+  <Project Path="ImBot.Adapter.OneBot/ImBot.Adapter.OneBot.csproj" />
   <Project Path="ImBot.Host/ImBot.Host.csproj" />
 </Solution>

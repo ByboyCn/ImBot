@@ -98,4 +98,13 @@ public interface IGreetApi
 {
     /// <summary>A 方法：向指定会话发送"你也好"。</summary>
     Task GreetBack(string conversationId);
+
+    /// <summary>B 方法：向指定会话发送"这是B方法"。</summary>
+    Task MethodB(string conversationId);
+
+    /// <summary>C 方法：向指定会话发送"这是C方法"。</summary>
+    Task MethodC(string conversationId);
+
+    /// <summary>D 方法：向指定会话发送"这是D方法"。</summary>
+    Task MethodD(string conversationId);
 }

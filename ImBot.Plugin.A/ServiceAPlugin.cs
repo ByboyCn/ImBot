@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using ImBot.Core;
+using ImBot.PluginA.Api;
 
 namespace ImBot.Plugins;
 
@@ -16,7 +17,7 @@ public sealed class ServiceAPlugin : IComponent
 
     public Task StartAsync(IContext ctx)
     {
-        ctx.Provide<IGreetApi>(new GreetApi(ctx));
+        ctx.Provide<ImBot.PluginA.Api.IGreetApi>(new GreetApi(ctx));
         Console.WriteLine("[plugin-a] GreetApi 已发布（A/B/C/D 四个方法）");
         return Task.CompletedTask;
     }

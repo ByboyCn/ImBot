@@ -90,21 +90,3 @@ public interface IHostInjectedPlugin
     Func<IAdapter?>? AdapterLookup { get; set; }
 }
 
-/// <summary>
-/// 插件 A 公开的 API 契约（放 Core：A/B 各自独立 ALC 也能按同一类型身份互通）。
-/// A 插件 Provide 实现，B 插件 Require 消费。
-/// </summary>
-public interface IGreetApi
-{
-    /// <summary>A 方法：向指定会话发送"你也好"。</summary>
-    Task GreetBack(string conversationId);
-
-    /// <summary>B 方法：向指定会话发送"这是B方法"。</summary>
-    Task MethodB(string conversationId);
-
-    /// <summary>C 方法：向指定会话发送"这是C方法"。</summary>
-    Task MethodC(string conversationId);
-
-    /// <summary>D 方法：向指定会话发送"这是D方法"。</summary>
-    Task MethodD(string conversationId);
-}

@@ -7,6 +7,7 @@
   <Project Path="ImBot.Cmd.Admin/ImBot.Cmd.Admin.csproj" />
   <Project Path="ImBot.UiConsole/ImBot.UiConsole.csproj" />
   <Project Path="ImBot.Cmd.Greet/ImBot.Cmd.Greet.csproj" />
+  <Project Path="ImBot.Plugin.A.Api/ImBot.Plugin.A.Api.csproj" />
   <Project Path="ImBot.Plugin.A/ImBot.Plugin.A.csproj" />
   <Project Path="ImBot.Plugin.B/ImBot.Plugin.B.csproj" />
   <Project Path="ImBot.Host/ImBot.Host.csproj" />

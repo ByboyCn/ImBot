@@ -200,6 +200,15 @@ internal static class Program
         Discover(onlyNew: false);
         api.Rescan = () => { Discover(onlyNew: true); return 0; };
 
+        // 预载契约库（*.Api.dll，主目录）进默认 ALC：
+        // 默认上下文只探测 deps.json 里登记的程序集，契约库不在其中，
+        // 不预载则插件 ALC 回落解析时会 FileNotFound
+        foreach (var contract in Directory.GetFiles(AppContext.BaseDirectory, "*.Api.dll"))
+        {
+            Assembly.LoadFrom(contract);
+            Console.WriteLine($"[host] 契约库已装载: {Path.GetFileName(contract)}");
+        }
+
         if (catalog.Count == 0) Console.WriteLine($"[host] 警告：{pluginsDir} 下没有发现插件");
 
         // 宿主级服务：管理平面与被管理插件平面分离

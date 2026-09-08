@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ImBot.Core;
+using ImBot.PluginA.Api;
 
 namespace ImBot.Plugins;
 
@@ -14,14 +15,14 @@ namespace ImBot.Plugins;
 public sealed class CallerBPlugin : IComponent
 {
     private readonly Dictionary<IAdapter, Func<InboundMessage, Task>> _subs = new();
-    private IGreetApi? _api;
+    private ImBot.PluginA.Api.IGreetApi? _api;
 
     public string Name => "plugin-b";
 
     public Task StartAsync(IContext ctx)
     {
         // 依赖 1：A 插件的 API（没上线就静默等待）
-        ctx.Require<IGreetApi>(
+        ctx.Require<ImBot.PluginA.Api.IGreetApi>(
             onAdd: api => { _api = api; Console.WriteLine("[plugin-b] GreetApi 可用"); },
             onRemove: _ => { _api = null; Console.WriteLine("[plugin-b] GreetApi 消失（A 已卸载？）"); });
 

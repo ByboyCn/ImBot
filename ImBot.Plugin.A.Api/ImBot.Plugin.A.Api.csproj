@@ -4,8 +4,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="../ImBot.Core/ImBot.Core.csproj" />
-    <ProjectReference Include="../ImBot.Plugin.A.Api/ImBot.Plugin.A.Api.csproj" />
-  </ItemGroup>
 </Project>
